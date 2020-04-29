@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../services/api.service';
+
+@Component({
+  selector: 'app-episode-details',
+  templateUrl: './episode-details.page.html',
+  styleUrls: ['./episode-details.page.scss'],
+})
+export class EpisodeDetailsPage implements OnInit {
+ 
+    episode: any; 
+    epId = null; 
+
+    constructor(private activatedRoute: ActivatedRoute, private api: ApiService) { }
+
+    ngOnInit() {
+        
+        this.epId = this.activatedRoute.snapshot.paramMap.get('id');
+
+        this.api.getEpisode(this.epId).subscribe(res => {
+             this.episode = res[0];
+             console.log(JSON.stringify(this.episode.episode_id));
+
+        });
+
+    }
+
+}
