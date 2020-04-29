@@ -4,7 +4,17 @@
 			<ion-back-button defaulthref="/tabs/episodes"></ion-back-button>
 		</ion-buttons>
 		<ion-title>Episodes Details</ion-title>
-	</ion-toolbar>
+	
+
+    <ion-buttons slot="end">
+ 			<ion-button (click)="unfavouriteEp()" *ngIf="isFavourite">
+ 				<ion-icon name="star" slot="icon-only"></ion-icon>
+ 			</ion-button>
+ 			<ion-button (click)="favouriteEp()" *ngIf="!isFavourite">
+ 				<ion-icon name="star-outline" slot="icon-only"></ion-icon>
+ 			</ion-button>
+ 		</ion-buttons>
+         </ion-toolbar>
 </ion-header>
 
 <ion-content padding>

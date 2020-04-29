@@ -10,16 +10,16 @@ import { ApiService } from '../../services/api.service';
 })
 export class DeathsPage implements OnInit {
 
-   deaths: Observable<any>;
+  deaths: Observable<any>;
 
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
+
       this.deaths = this.api.getDeaths();
       this.deaths.subscribe(data => {
-          console.log('my data: ', data);
-      });
-
+           console.log('info', data);
+       });
   }
 
 }
