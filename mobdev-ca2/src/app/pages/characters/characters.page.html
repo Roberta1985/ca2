@@ -6,9 +6,22 @@
 
 <ion-content class="ion-padding">
 	<ion-list>
-		<ion-item button detail lines="inset" *ngFor="let character of characters | async"
+		<ion-item button detail lines="inset" *ngFor="let character of characters"
 			(click)="openDetails(character)">
-			{{ character.name }}
+		
+            <ion-avatar slot="start">
+ 				<img src="{{ character.img }}">
+             </ion-avatar>
+ 				<!-- The tag avatar will display the image in a rounded icon-->
+ 				<ion-label>
+ 					<p> {{ character.name }} </p>
+ 				</ion-label>
+
 		</ion-item>
 	</ion-list>
+
+    <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMore($event)">
+ 		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading characters">
+ 		</ion-infinite-scroll-content>
+ 	</ion-infinite-scroll>
 </ion-content>

@@ -18,9 +18,9 @@ export class ApiService {
         //This function will select the epsiode desired! 
         return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`)
     }
-    getCharacters() {
+    getCharacters(offset) {
         //We define functions to call the method in the Characters logic page
-        return this.http.get('https://www.breakingbadapi.com/api/characters')
+        return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20&offset=${offset}`)
     }
 
     getCharacter(id) {

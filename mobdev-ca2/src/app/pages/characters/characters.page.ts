@@ -11,16 +11,39 @@ import { ApiService } from '../../services/api.service';
 })
 export class CharactersPage implements OnInit {
 
-    characters: Observable<any>;
+    characters = [];
+    offset = 0;
+    maximumChars = 64;
+
     constructor(private router: Router, private api: ApiService) { }
     
 
     ngOnInit() {
-        this.characters = this.api.getCharacters();
-        this.characters.subscribe(data => {
-            console.log('my data: ', data);
-        });
+        this.charsLoad();
     }
+
+    charsLoad(event?) {
+        
+         this.api.getCharacters(this.offset).subscribe(data => {
+             console.log("my chararters info:", data);
+
+             this.characters = this.characters.concat(data);
+
+             if (event) {
+                 event.target.complete();
+             }
+         })
+     }
+     loadMore(event?) {
+        
+         this.offset = this.offset + 20;
+         this.charsLoad(event);
+
+        
+         if (this.offset > this.maximumChars) {
+             event.target.disabled = true;
+         }
+     }
 
     openDetails(character) {
          let charId = character.char_id; 
