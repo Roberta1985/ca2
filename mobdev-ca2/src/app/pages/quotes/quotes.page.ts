@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./quotes.page.scss'],
 })
 export class QuotesPage implements OnInit {
-
+    author: any; 
     quotes: Observable<any>
 
   constructor(private api: ApiService, private router: Router) { }
@@ -21,9 +21,15 @@ export class QuotesPage implements OnInit {
         });
     }
 
+     search() {
+         this.quotes = this.api.getAuthor(this.author);
+         this.quotes.subscribe(res => {
+             console.log('info', res);
+         });
+     }
+
     openDetails(quote) {
         let qId = quote.quote_id;
         this.router.navigateByUrl(`/tabs/quotes/${qId}`);
     }
-
 }

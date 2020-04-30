@@ -5,10 +5,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-	<ion-list>
+	<ion-searchbar [(ngModel)]="quote" (ionChange)="search($event)"></ion-searchbar>
+    <ion-list>
 		<ion-item button detail lines="inset" *ngFor="let quote of quotes | async"
 			(click)="openDetails(quote)">
-			{{ quote.author }}
+			{{ quote.quote }}
 		</ion-item>
 	</ion-list>
 </ion-content>

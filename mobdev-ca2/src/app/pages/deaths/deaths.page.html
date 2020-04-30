@@ -5,7 +5,16 @@
 </ion-header>
 
 <ion-content class="ion-padding">	
- 		<ion-card *ngFor="let death of deaths | async">
- 			<p> Total number of deaths: {{ death.deathCount }} </p>
- 		</ion-card>
+ 		<ion-card class="ion-padding-horizontal">
+ 		<!-- change it--> <p> How many people were killed because of someone? Search for name of the character.
+          Otherwise, is displayed the <b>total</b> number of deaths in Breaking Bad!</p>
+ 	</ion-card>
+
+ 	<ion-searchbar [(ngModel)]="death" (ionChange)="search($event)"></ion-searchbar>
+
+
+ 	<ion-card color="warning" *ngFor="let death of deaths | async">
+ 		<h1  class="ion-text-center"> {{ death.deathCount }} </h1>
+ 	</ion-card>
+         
 </ion-content>
