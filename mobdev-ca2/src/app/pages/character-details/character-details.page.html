@@ -1,10 +1,14 @@
+<!-- ngIf - Reference: -->
+<!-- https://angular.io/api/common/NgIf -->
+
 <ion-header>
+<!-- The color primary is from the ionic -->
 	<ion-toolbar color="primary">
 		<ion-buttons slot="start">
 			<ion-back-button defaulthref="/tabs/characters"></ion-back-button>
 		</ion-buttons>
 		<ion-title>Character Details</ion-title>
-
+<!-- We have two buttons, one to the method of favourite and one for method unfavourite -->
         <ion-buttons slot="end">
  			<ion-button (click)="unfavouriteChar()" *ngIf="isFavourite">
  				<ion-icon name="star" slot="icon-only"></ion-icon>
@@ -17,7 +21,8 @@
 </ion-header>
 
 <ion-content padding>
-
+<!-- This content would be the body of html-->
+<!-- We will access names, nicknames, birthday, occupation and image with url retrieved from API -->
 	<ion-card *ngIf="character">
 		<ion-card-content>
 			<h2> Name: {{ character.name }} </h2>

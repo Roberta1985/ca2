@@ -7,25 +7,28 @@ import { HttpClient } from "@angular/common/http";
 export class ApiService {
 
     constructor(private http: HttpClient) { }
-    //This allow to check for the import functionality 
+    //This allow to check for the import functionality and GET requests to the API
 
-    getEpisodes() {
-        //We define functions to call the method in the Episode logic page
-        return this.http.get(`https://www.breakingbadapi.com/api/episodes`)
-    }
-
-    getEpisode(id) {
-        //This function will select the epsiode desired! 
-        return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`)
-    }
     getCharacters(offset) {
-        //We define functions to call the method in the Characters logic page
+        //We define how many characters will be downloaded per time and which index of array 
         return this.http.get(`https://www.breakingbadapi.com/api/characters?limit=20&offset=${offset}`)
     }
 
     getCharacter(id) {
+        //Get characters by ID
         return this.http.get(`https://www.breakingbadapi.com/api/characters/${id}`)
     }
+    getEpisodes() {
+       
+        return this.http.get(`https://www.breakingbadapi.com/api/episodes`)
+    }
+
+    getEpisode(id) {
+       
+        return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`)
+    }
+
+
     getQuotes() {
         //Same as getEpisodes but for Quotes
         return this.http.get(`https://www.breakingbadapi.com/api/quotes`)
@@ -34,13 +37,17 @@ export class ApiService {
     getQuote(id) {
         return this.http.get(`https://www.breakingbadapi.com/api/quotes/${id}`)
     }
-    
-    search() {
-         this.deaths = this.api.getDeath(this.death);
-         this.deaths.subscribe(res => {
-             console.log('my data', res);
-         });
-     }
+    getAuthor(author) {
+        return this.http.get(`https://www.breakingbadapi.com/api/quotes?author=${author}`)
+    }
 
+
+    getDeaths() {
+        return this.http.get(`https://www.breakingbadapi.com/api/death-count`)
+    }
+
+    getDeath(name) {
+        return this.http.get(`https://www.breakingbadapi.com/api/death-count?name=${name}`)
+    }
 
 }

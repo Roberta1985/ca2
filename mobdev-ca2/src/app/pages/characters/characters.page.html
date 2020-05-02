@@ -1,5 +1,5 @@
 <ion-header>
-	<ion-toolbar color="primary">
+	<ion-toolbar color="secondary">
 		<ion-title>Characters</ion-title>
 	</ion-toolbar>
 </ion-header>
@@ -13,14 +13,17 @@
  				<img src="{{ character.img }}">
              </ion-avatar>
  				<!-- The tag avatar will display the image in a rounded icon-->
+                 <!-- Example from https://youtu.be/Nc1RqvDY-B8-->
  				<ion-label>
  					<p> {{ character.name }} </p>
  				</ion-label>
 
 		</ion-item>
 	</ion-list>
-
-    <ion-infinite-scroll threshold="10%" (ionInfinite)="loadMore($event)">
+<!-- We have an infinite scroll -->
+<!-- This threshold works when you have 80% of the page loaded, you can load more -->
+<!-- This event will work when you call the loadMore() function-->
+    <ion-infinite-scroll threshold="20%" (ionInfinite)="loadMore($event)">
  		<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading characters">
  		</ion-infinite-scroll-content>
  	</ion-infinite-scroll>

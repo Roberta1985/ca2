@@ -9,39 +9,40 @@ import { FavouriteService } from './../../services/favourite.service';
   styleUrls: ['./episode-details.page.scss'],
 })
 export class EpisodeDetailsPage implements OnInit {
- 
+ //Code similar to Episode-details.page.ts
     episode: any; 
-    epId = null; 
+    ID = null; 
     isFavourite = false;
 
     constructor(private activatedRoute: ActivatedRoute, private api: ApiService, private favouriteService: FavouriteService) { }
 
     ngOnInit() {
         
-        this.epId = this.activatedRoute.snapshot.paramMap.get('id');
+        this.ID = this.activatedRoute.snapshot.paramMap.get('id');
 
-        this.api.getEpisode(this.epId).subscribe(res => {
-             this.episode = res[0];
+        this.api.getEpisode(this.ID).subscribe(data => {
+             this.episode = data[0];
              console.log(JSON.stringify(this.episode.episode_id));
 
       });
 
-         this.favouriteService.isFav(this.epId).then(isFav => {
+         this.favouriteService.isFav(this.ID).then(isFav => {
              this.isFavourite = isFav;
          });
 
      }
-     favouriteEp() {
-         //YURIIIII - this method use s function created in the favourite.serive.ts, return a boolean flag if the character is favourite 
-         this.favouriteService.favouriteEp(this.epId).then(() => {
-             this.isFavourite = true;
-         });
-     }
-
      unfavouriteEp() {
-         this.favouriteService.unfavouriteEp(this.epId).then(() => {
+         this.favouriteService.unfavouriteEp(this.ID).then(() => {
              this.isFavourite = false;
          });
      }
 
+     favouriteEp() {
+         
+         this.favouriteService.favouriteEp(this.ID).then(() => {
+             this.isFavourite = true;
+         });
+     }
+
+     
 }

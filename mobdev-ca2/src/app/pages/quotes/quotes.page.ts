@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./quotes.page.scss'],
 })
 export class QuotesPage implements OnInit {
+    
+    allquotes = [];
     author: any; 
     quotes: Observable<any>
 
@@ -22,9 +24,11 @@ export class QuotesPage implements OnInit {
     }
 
      search() {
+
          this.quotes = this.api.getAuthor(this.author);
          this.quotes.subscribe(res => {
              console.log('info', res);
+              this.allquotes = this.allquotes.concat(res);
          });
      }
 
