@@ -20,12 +20,12 @@ export class ApiService {
     }
     getEpisodes() {
        
-        return this.http.get(`https://www.breakingbadapi.com/api/episodes`)
+        return this.http.get(`https://pacific-inlet-90657.herokuapp.com/api/episodes`)
     }
 
     getEpisode(id) {
        
-        return this.http.get(`https://www.breakingbadapi.com/api/episodes/${id}`)
+        return this.http.get(`https://pacific-inlet-90657.herokuapp.com/api/episodes/${id}`)
     }
 
 
