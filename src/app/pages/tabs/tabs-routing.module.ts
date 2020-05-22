@@ -54,7 +54,16 @@ const routes: Routes = [
             loadChildren: () => import('../quote-details/quote-details.module').then( m => m.QuoteDetailsPageModule)
           }
         ]
-      }
+      },
+       {
+        path: 'cam',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../cam/cam.module').then( m => m.CamPageModule)
+          },
+        ]
+      },
     ]
   },
   {
